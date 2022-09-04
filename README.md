@@ -1,3 +1,3 @@
 # hh-monitor
 
-Fetch vacancy count for provided programming languages
+Looks up vacancy count for programming languages at spb.hh.ru
