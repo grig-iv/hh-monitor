@@ -27,6 +27,7 @@ import (
 	"net/http"
 	"os"
 	"regexp"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
@@ -141,10 +142,12 @@ func getUrl(lang string) string {
 }
 
 func formStatEntry(monitorRes []monitorResult) string {
+    sort.Slice(monitorRes, func(i, j int) bool {
+        return monitorRes[i].vacancyCount < monitorRes[j].vacancyCount
+    })
+
 	sb := strings.Builder{}
-
 	sb.WriteString(time.Now().Format("[06-01-02 15:04]\n"))
-
 	for _, res := range monitorRes {
 		var langLine string
 		if res.error != nil {
